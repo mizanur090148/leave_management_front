@@ -1,0 +1,7 @@
+.cc, .bcc {
+  cursor: pointer;
+}
+.dont-have-account {
+  padding-left: 110px;
+  padding-right: 20px;
+}

@@ -1,0 +1,9 @@
+.cc, .bcc {
+  cursor: pointer;
+}
+.dont-have-account {
+  padding-left: 100px;
+}
+.dont-have-account .sign-up-link {
+  padding-left: 20px;
+}
