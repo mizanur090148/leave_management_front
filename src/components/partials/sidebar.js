@@ -56,6 +56,25 @@ function Sidebar() {
               </li>
 
               <li className="sidebar-header">
+                Settings
+              </li>
+              <li className="sidebar-item">
+                <Link className="sidebar-link" to="/settings/leave-type">
+                  <i className="align-middle" data-feather="sliders"></i> <span className="align-middle">Leave Type</span>
+                </Link>
+              </li>
+              <li className="sidebar-item">
+                <Link className="sidebar-link" to="/settings/company">
+                  <i className="align-middle" data-feather="sliders"></i> <span className="align-middle">Company</span>
+                </Link>
+              </li>
+              <li className="sidebar-item">
+                <Link className="sidebar-link" to="/leave-details">
+                  <i className="align-middle" data-feather="sliders"></i> <span className="align-middle">Leave Details</span>
+                </Link>
+              </li>
+
+              <li className="sidebar-header">
                 Tools & Components
               </li>
 

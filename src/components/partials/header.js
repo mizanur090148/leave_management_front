@@ -1,5 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { loginFailed } from "../../store/slices/authSlice"
 
 function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const signout = () => {
+    dispatch(loginFailed({}));
+    navigate("/");
+  };
 
   return (
       <>
@@ -7,7 +16,6 @@ function Header() {
         <a className="sidebar-toggle js-sidebar-toggle">
           <i className="hamburger align-self-center"></i>
         </a>
-
         <div className="navbar-collapse collapse">
           <ul className="navbar-nav navbar-align">
             <li className="nav-item dropdown">
@@ -172,7 +180,7 @@ function Header() {
                 <a className="dropdown-item" href="#"><i className="align-middle me-1"
                                                          data-feather="help-circle"></i> Help Center</a>
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">Log out</a>
+                <a className="dropdown-item" href="#" onClick={()=>signout()}>Log out</a>
               </div>
             </li>
           </ul>

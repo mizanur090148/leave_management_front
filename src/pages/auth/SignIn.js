@@ -1,14 +1,45 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { usePostRequest } from "../../hooks/usePostRequest";
+import { loginSuccess } from "../../store/slices/authSlice"
+import { postRequest } from '../../utils/axiosRequests';
 
 function SignIn() {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm();
+
+  const onSubmit = (data) => {
+    postRequest('auth/login', data)
+      .then(data=>{
+        sessionStorage.setItem('token', JSON.stringify(data.token));
+        dispatch(loginSuccess(data));
+        navigate("/leave-application");
+      })
+      .catch(error=>{
+        setAuthError(error.message);
+        console.log("from react query error: ", error.message);
+      })
+  };
+
+  // console.log(watch("example"));
+
 
   return (
     <div className="d-table-cell align-middle">
       <div className="text-center mt-4">
-        <h1 className="h2">Welcome back to Leave Management System</h1>
+        <h1 className="h2">Welcome To Leave Management System</h1>
         <p className="lead"> Sign in to your account to continue </p>
       </div>
       <div className="card">
@@ -19,12 +50,40 @@ function SignIn() {
             </div>
             <form>
               <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input className="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" onChange={(e)=>setUserName(e.target.value)} />
+                <label className="form-label">Username</label>
+                <input
+                  className="form-control form-control-lg" 
+                  type="text" 
+                  placeholder="Enter your user name"
+                  {...register("email", {
+                    required: true,
+                    maxLength: 30,
+                    //pattern: /^[A-Za-z]+$/i
+                  })}
+                />
+                {errors?.email?.type === "required" && <p>This field is required</p>}
+                {errors?.email?.type === "maxLength" && (
+                  <p className="error-msg">This field cannot exceed 30 characters</p>
+                )}
+                {/* {errors?.email?.type === "pattern" && (
+                  <p>Alphabetical characters only</p>
+                )} */}
               </div>
               <div className="mb-3">
                 <label className="form-label">Password</label>
-                <input className="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" onChange={(e)=>setPassword(e.target.value)} />
+                <input
+                  className="form-control form-control-lg" 
+                  type="password" 
+                  placeholder="Enter your password"
+                  {...register("password", {
+                    required: true,
+                    maxLength: 30
+                  })}
+                />
+                {errors?.password?.type === "required" && <p>This field is required</p>}
+                {errors?.password?.type === "maxLength" && (
+                  <p className="error-msg">This field cannot exceed 30 characters</p>
+                )}
                 <small>
                   <Link to="/forgot-password">Forgot password?</Link>
                 </small>
@@ -37,7 +96,7 @@ function SignIn() {
                 </label>
               </div>
               <div className="text-center mt-3">
-                <button type="submit" className="btn btn-lg btn-primary">Sign in</button>
+                <button type="submit" onClick={handleSubmit(onSubmit)} className="btn btn-lg btn-primary">Sign in</button>
               </div>
             </form>
           </div>

@@ -2,10 +2,11 @@ import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { Editor } from '@tinymce/tinymce-react';
+import { leaveTypes } from '../utils/helpers';
 
 const animatedComponents = makeAnimated();
 
-function LeaveApplication() {
+function LeaveDetails() {
   const [to, setTo] = useState('');
   const [cc, setCc] = useState('');
   const [bcc, setBcc] = useState('');
@@ -56,12 +57,11 @@ function LeaveApplication() {
     }
   };
 
-
   return (
     <main className="content">
       <div className="container-fluid p-0">
           <div className="mb-3">
-            <h1 className="h3 d-inline align-middle">Leave Application</h1>
+            <h1 className="h3 d-inline align-middle">Leave Details </h1>
           </div>
           <div className="row">
             <div className="col-12 col-lg-12">
@@ -162,4 +162,4 @@ function LeaveApplication() {
         </div>
     </main>
   )
-} export default LeaveApplication;
+} export default LeaveDetails;

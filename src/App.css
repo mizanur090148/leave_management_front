@@ -1,7 +1,23 @@
-.cc, .bcc {
+.cc,
+.bcc {
   cursor: pointer;
 }
 .dont-have-account {
   padding-left: 120px;
   padding-right: 10px;
+}
+
+.error-msg {
+  color: #bf1650;
+}
+
+.error-msg::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+.custom-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
