@@ -6,10 +6,6 @@ function LeaveType() {
   const [searchKey, setSearchKey] = useState('');
   const [leaveTypes, setLeaveTypes] = useState([]);
 
-  // useEffect(() => {
-  //   getLeaveTypes();
-  // }, []);
-
   useEffect(() => {
     getLeaveTypes();
   }, [searchKey]);
