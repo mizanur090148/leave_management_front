@@ -3,17 +3,21 @@ import Search from '../../components/partials/Search';
 import { getRequest } from '../../utils/axiosRequests';
 
 function LeaveType() {
+  const [searchKey, setSearchKey] = useState('');
   const [leaveTypes, setLeaveTypes] = useState([]);
 
+  // useEffect(() => {
+  //   getLeaveTypes();
+  // }, []);
+
   useEffect(() => {
-    console.log(999)
     getLeaveTypes();
-  }, []);
+  }, [searchKey]);
 
   const getLeaveTypes = () => {
-    getRequest(`leave-types`)
+    getRequest(`leave-types?name=${searchKey}`)
       .then((data) => {
-        setLeaveTypes(data);
+        setLeaveTypes(data.data);
       })
       .catch(error=>{
         console.log(error);
@@ -30,12 +34,19 @@ function LeaveType() {
           <div className="row">
             <div className="col-12 col-lg-12 col-xxl-12">
               <div className="card flex-fill">
-                <div className="card-header custom-flex">
+                {/* <div className="card-header custom-flex">
                   <h5 className="card-title mb-0">List</h5>
                   <Search
+                    setSearchKey={setSearchKey}
+                  />
+                </div> */}
+                <div className="card-body">
+                  <div className="card-header11 custom-flex">
+                  <h5 className="card-title mb-0">List</h5>
+                  <Search
+                    setSearchKey={setSearchKey}
                   />
                 </div>
-                <div className="card-body">
                 <table className="table table-hover my-0">
                   <thead>
                     <tr>
@@ -49,7 +60,11 @@ function LeaveType() {
                     <tr key={index}>
                       <td>{++index}</td>
                       <td>{leave.name}</td>
-                      <td className="d-none d-xl-table-cell">01/01/2021</td>
+                      <td className="d-none d-xl-table-cell">
+                        <div class="mb-2">
+                          <i class="align-middle me-2" data-feather="trash-2"></i>
+                        </div>
+                      </td>
                       <td className="d-none d-xl-table-cell">31/06/2021</td>
                     </tr>
                   )} 

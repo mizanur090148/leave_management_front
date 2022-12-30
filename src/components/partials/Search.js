@@ -1,8 +1,8 @@
-function Search() {
+function Search({ setSearchKey }) {
 
   return (
       <div>
-         <input className="form-control" type="text" placeholder="search" />
+         <input className="form-control" type="text" placeholder="search" onChange={(e)=>setSearchKey(e.target.value)} />
       </div>
   )
 }

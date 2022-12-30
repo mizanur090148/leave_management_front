@@ -16,8 +16,11 @@
   content: "⚠ ";
 }
 
-.custom-flex {
+.flex-fill .custom-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.content {
+  padding: 1rem 3rem 1.5rem !important;
 }
