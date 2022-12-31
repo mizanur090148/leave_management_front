@@ -1,8 +1,10 @@
+import { faList12 } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Search from "../../components/partials/Search";
 import { getRequest } from "../../utils/axiosRequests";
 
-function LeaveType() {
+function List() {
   const [searchKey, setSearchKey] = useState("");
   const [leaveTypes, setLeaveTypes] = useState([]);
 
@@ -28,20 +30,18 @@ function LeaveType() {
     <main className="content">
       <div className="container-fluid p-0">
         <div className="mb-3">
-          <h1 className="h3 d-inline align-middle">Leave Types </h1>
+          <h1 className="h3 d-inline align-middle">Certificates </h1>
         </div>
         <div className="row">
           <div className="col-12 col-lg-12 col-xxl-12">
             <div className="card flex-fill">
-              {/* <div className="card-header custom-flex">
-                  <h5 className="card-title mb-0">List</h5>
-                  <Search
-                    setSearchKey={setSearchKey}
-                  />
-                </div> */}
               <div className="card-body">
-                <div className="card-header11 custom-flex">
-                  <h5 className="card-title mb-0">List</h5>
+                <div className="custom-flex">
+                  <h5 className="card-title mb-0">
+                    <Link to="/certificate/create" class="btn btn-primary">
+                      Add New
+                    </Link>
+                  </h5>
                   <Search setSearchKey={setSearchKey} />
                 </div>
                 <table className="table table-hover my-0">
@@ -79,4 +79,4 @@ function LeaveType() {
     </main>
   );
 }
-export default LeaveType;
+export default List;

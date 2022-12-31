@@ -24,3 +24,10 @@
 .content {
   padding: 1rem 3rem 1.5rem !important;
 }
+.custom-design {
+  font-size: 22px;
+  cursor: pointer;
+}
+.certificate-action i {
+  padding-top: 3px;
+}
